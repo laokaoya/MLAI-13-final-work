@@ -124,4 +124,4 @@ X = data[:,:-1]
 y = data[:,29]
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.3, random_state = 0)
 
-app.run(debug = True)
+app.run(host='0.0.0.0'，debug = True)
