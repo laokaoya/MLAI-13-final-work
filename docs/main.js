@@ -17,7 +17,7 @@ function chooseModel(){
 }
 
  function connectFlask() {
-  var url = "https://16419602.r7.cpolar.top/roc_curve/";
+  var url = "https://caf2e70.r11.cpolar.top/roc_curve/";
   var modelname = document.getElementById("modelname").value;
   var max_depth = document.getElementById("depth").value;
   var max_leaf_nodes = document.getElementById("leaf").value;
@@ -150,7 +150,7 @@ function visualize(){
 				.attr("width", w)
 				.attr("height", h);
 				
-	var url = "https://16419602.r7.cpolar.top/viz/";
+	var url = "https://caf2e70.r11.cpolar.top/viz/";
 	var modelname = document.getElementById("modelname").value;
 	var learning_rate = document.getElementById("lr").value;
 	var max_depth = document.getElementById("depth").value;
