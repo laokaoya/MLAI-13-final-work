@@ -16,36 +16,56 @@ function chooseModel(){
 	}
 }
 
- function connectFlask() {
-  var url = "https://16419602.r7.cpolar.top/roc_curve/";
-  var modelname = document.getElementById("modelname").value;
-  var max_depth = document.getElementById("depth").value;
-  var max_leaf_nodes = document.getElementById("leaf").value;
-  var n_estimators = document.getElementById("estimators").value;
-  var learning_rate = document.getElementById("lr").value;
-  
-  if (learning_rate==="") {
-	learning_rate = .1;
-  }
-  
-  if (n_estimators==="") {
-	n_estimators = 100;
-  }
-  
-  if (max_depth==="") {
-	max_depth = 5;
-  }
-  
-  if (max_leaf_nodes==="") {
-	max_leaf_nodes = 10;
-  }
-  
-  url1 = url.concat("m=").concat(modelname).concat("/d=").concat(max_depth).concat("/l=").concat(max_leaf_nodes).concat("/n=").concat(n_estimators).concat("/c=").concat(learning_rate);
-  
+function connectFlask() {
+    var url = "https://16419602.r7.cpolar.top/roc_curve/";
+    var modelname = document.getElementById("modelname").value;
+    var max_depth = document.getElementById("depth").value;
+    var max_leaf_nodes = document.getElementById("leaf").value;
+    var n_estimators = document.getElementById("estimators").value;
+    var learning_rate = document.getElementById("lr").value;
 
-  d3.json(url1).then(function(data) {
-    drawRoc(data);
-  });
+    if (learning_rate === "") {
+        learning_rate = 0.1;
+    } else {
+        learning_rate = parseFloat(learning_rate);
+        // 确保learning_rate在合法范围内（小于1）
+        learning_rate = Math.min(1, Math.max(0.1, learning_rate));
+    }
+
+    if (n_estimators === "") {
+        n_estimators = 100;
+    } else {
+        n_estimators = parseInt(n_estimators);
+        // 确保n_estimators是正数
+        n_estimators = Math.max(1, n_estimators);
+        // 每次加减10
+        n_estimators = Math.floor(n_estimators / 10) * 10;
+    }
+
+    if (max_depth === "") {
+        max_depth = 5;
+    } else {
+        max_depth = parseInt(max_depth);
+        // 确保max_depth是正数且不超过200
+        max_depth = Math.min(200, Math.max(1, max_depth));
+    }
+
+    if (max_leaf_nodes === "") {
+        max_leaf_nodes = 10;
+    } else {
+        max_leaf_nodes = parseInt(max_leaf_nodes);
+        // 确保max_leaf_nodes是正数且不超过50
+        max_leaf_nodes = Math.min(50, Math.max(1, max_leaf_nodes));
+    }
+
+    // 每次加减0.1
+    learning_rate = Math.floor(learning_rate / 0.1) * 0.1;
+
+    url1 = url.concat("m=").concat(modelname).concat("/d=").concat(max_depth).concat("/l=").concat(max_leaf_nodes).concat("/n=").concat(n_estimators).concat("/c=").concat(learning_rate);
+
+    d3.json(url1).then(function (data) {
+        drawRoc(data);
+    });
 }
 
 
