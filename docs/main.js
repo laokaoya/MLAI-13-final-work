@@ -17,8 +17,7 @@ function chooseModel(){
 }
 
  function connectFlask() {
-  var host = window.location.origin;
-  var url = host + "/roc_curve/";
+  var url = "http://192.168.2.201:5000/roc_curve/";
   var modelname = document.getElementById("modelname").value;
   var max_depth = document.getElementById("depth").value;
   var max_leaf_nodes = document.getElementById("leaf").value;
@@ -151,8 +150,7 @@ function visualize(){
 				.attr("width", w)
 				.attr("height", h);
 				
-	var host = window.location.origin;
-	var url = host + "/viz/";
+	var url = "http://192.168.2.201:5000/roc_curve/";
 	var modelname = document.getElementById("modelname").value;
 	var learning_rate = document.getElementById("lr").value;
 	var max_depth = document.getElementById("depth").value;
