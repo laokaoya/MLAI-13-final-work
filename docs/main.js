@@ -17,7 +17,8 @@ function chooseModel(){
 }
 
  function connectFlask() {
-  var url = "/roc_curve/";
+  var host = window.location.origin;
+  var url = host + "/roc_curve/";
   var modelname = document.getElementById("modelname").value;
   var max_depth = document.getElementById("depth").value;
   var max_leaf_nodes = document.getElementById("leaf").value;
@@ -150,7 +151,8 @@ function visualize(){
 				.attr("width", w)
 				.attr("height", h);
 				
-	var url = "/viz/";
+	var host = window.location.origin;
+	var url = host + "/viz/";
 	var modelname = document.getElementById("modelname").value;
 	var learning_rate = document.getElementById("lr").value;
 	var max_depth = document.getElementById("depth").value;
